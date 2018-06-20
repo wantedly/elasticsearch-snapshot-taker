@@ -2,26 +2,30 @@ language: go
 go:       "1.10"
 
 services:
-  - docker
+- docker
 
 env:
   global:
-    - PATH=$HOME/.wantedly/bin:$PATH
+  - PATH=$HOME/.wantedly/bin:$PATH
+  - secure: "UmPIqpS9Ur9wlQ/EtlXo4ddQdd5VOmnb7CJwUoXFaHeXjpkybYMafC2pJ23ak8Su2PCzxxjE5P5Nr8qF+rjZIcC3FyFNRLHP8xNswBb0t0G7di/ezlcT9YN1eNxH7kQE/h8ff+ta3TXyLmM+MTGIjjnO98UbBw9kVHYsWY/71UbVh2hw+0S1neIsYVihLqKdk0q6zA9GeltSZY37bMN0tdITXzNxBrA7rxds2ftggkALM5d+1QaAGImMTbCsvmJ9iZUc8NXpM8E9ERAhLmofUN7dS+uncEhlgiU+AUgZjnKMY98WCeGKN7KWKDD1xPjbx6P1GZCY4po59zoHVaQfZskfLgc/zBlAnk8ZfAvEzKs5n8DaHc3LpLUeJAtPnesE56FFnDc5g3rIcWKwWPUF1Cm+JSicMBXFf42Nft7CwRqsWEGzJnPe4CT7FpJqMlG3uDBPGKfJsMgbiT9DraLKW09E5qWjqSsCws5hC12Pnw7P05uNsO2Ld8NJ3Fd+eWzyt3jeD28ykf3dTl01poer0ftUqk3+kKNTKVCjv5L06nNlFD/KtbJBTO7a0FB1rkAKptULnLlasnPtqBkVo4v+9G6Pw1CtGgZ9OfHuZcvNztr27VONna8GjZsQmfXaFodtixjnlt+k8x4CkWddP7LTF+1OAe6RlQ8J0+5vXt5lzEM="
+  - secure: "jtaX4fKR/CckiejZsrM+s8xlyvs+3M27GFQbhDZWDNlq4BK4ex+u4RZr++EUE923E/YRRK8cCD8TmcVWshY27pm1DbSPIUCB3c3qN3HQxTE9Kht1cpuAfsjKPgJQhmDroy/GHeLUCdddIXg8XPAgWaP93tkSq++/u/F0AgYOoTsbSUtQv9D2iymIMHGdrWKFx4rmHHBIRrN/cpWPIZ9EfmubBURqSJoPI1aKK2G7qysVxNzq2Djf4W4CqZoxR9ogXBk5ntNl1/8CFW0Tx0aOwaY1dK0AUew0KlbD9OgxuTn004d5CyTPCCVG2GEfY0ET/181m8E7J5LP+c1pdtFVXBzk843tKopTT1Ow9Ouu10Lub9D2K6bNI4jZbWRpIn523EqAmfSdaLYR5hTArijdER5DkpkLlXkFX1+hxLtNw5b2bd0XH9PJ5hfV2RUtdAkBIf21JsH1QaEt/WDYD/RFZrraH72RwywCBN9EiV+kP6y3HQQeT3L7VPVRRFi7w+FZbXPuDOtZeMHdEksf1/PliYHAAHOMwvy5PN/GDIV2yK0PWiQj0OPY81gkLSuLQbkNGIImqsqxmYTbkUQRdSXt9bfG1jNdy4W2BjiD1R2CNrOEVFpnlxf8I9dwngpyguZeVIXzQgSjoFbGksX98p1j5doH6D5IkgCaM2bszhulVo4="
+  - secure: "KWLlnF+UL2vZWHMShod4VBqmhsNT6EwsNJ9mpmeCsAnN6NSuwY3RCuys8LwksIxVsHRgEGXTiFgQxZS5bZaMK+/as3L6W+z+p0sIpcnjBh+TUE2x6sQ2tbuIdbKvZrqqD0WjCU/9qBl2qbGAGBbIMTkhSLmlDj5eivQYKe/yTMoWGfeSot/gS1VizoNxhTdPctLMGPUS8YJiz8Fc5WJXFNsYDxtCnJbPQJx0UVVE9RJZ9aMfb9S7d66uwrsgfVJDMrI5Bb8GpxVcc51sAPkUscdbSE31wedl/Vcf310/7ClsqZK98lFzps/8kWMTA/mZkVGMtT9x65NTtgZXNyQuBTEjYJ9ckdC8OSeqdLKHhC6tNxgBAcsfmvzMKqlDgvzrKlUJiHNjDWFJO+w968o4TmWsMLeMZeyAZkcnD223hQOjCdQbZQqjkxshdD7Fp99W+kBcpzXusYLksMLyHDtOnDwWlsRteoQjrkrCinrS3B33VE9I4sDON8mLN5DeWcGgcYq4HtWIg71Bkz07DHBl1JzlHLyJIBF21nMlXAbV8SptumkWxKzfHNBQcRcMDQway/G5QT4as3NhJUChYsYHqYnoDaxTJDY18zBW2GaTB/9zEJMZPar6cl7fsN8TuDvV45a+QLaJgKlIvux/y3GNRZnfxAVnd9MUkTrRt1jEwqk="
+  - secure: "Gkd0wSMsujsDB7iTeM0VLFTGJSHRtdjvLhchlIrOJITQlI2VDBSEPvBGWSnUiQiN2zaK/xsJwM7XKG4W9ie2CFu1r4rFIvDIr1z0DQOCQghFKACTqgVz00ydg0ub3n2pxP9cygfJDb7SBGzjymgDLo+3RIGy06mJ8iIQKrl5qjiRecJS3ejTOU5wciQiTsjWzPM5u0En7QwHaKlLtoMT70ICodNIxxCa2W8HXuTMTUzeTcdBpwFTYqJWPRkqVLfmChKRwizkWnAqHcp/19LPVrWqfpExfZYJCA+zxOu+93/BaShY2czq+prYx/Vz3VjwEdWuyrZeK92/J9LBdsVGzrKJn2Qss/n5mfKr5dIs3GN3BIIgrPL+lp3/jwjDWa4cSrBa3t4rOckghd/GmscWO2W5ATGe4FQkriaHnenou7NxzmS6c1wSjEEn+2/4++eWMEEsptmUewMKlAaL9ASoDYl+AyTGuAlK5ai/05Blk985mSkgb0OYx/iD1N0ssAu2tVr7sPhxBm7q8OHMQg0YOQzMPlkgxba10c8eJT8ufslsU60ui+uJeHIkvl1BX5FZVwp2LVMATGXk+QwQ4A6npqm7dJKum4vz7MvrAZY7M/rYHkwRcvrKENnROEDu6/Ias6pxYYI0L0AbFwVW1mA0t2QsWb8fmF6MrBztcKxcl2k="
 
 cache:
   directories:
-    - vendor
+  - vendor
 
 before_install:
-  - curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o $GOPATH/bin/dep
-  - chmod +x $GOPATH/bin/dep
-  - go get -u github.com/golang/lint/golint
+- curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o $GOPATH/bin/dep
+- chmod +x $GOPATH/bin/dep
+- go get -u github.com/golang/lint/golint
 
 install:
-  - dep ensure -v
-  - bash <(curl -sL https://get.wantedlyapp.com/kube)
+- dep ensure -v
+- bash <(curl -sL https://get.wantedlyapp.com/kube)
 
 script:
-  - go vet -v
-  - go test -v
-  - kube ci-build
+- go vet -v
+- go test -v
+- kube ci-build
