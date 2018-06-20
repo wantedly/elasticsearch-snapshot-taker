@@ -55,7 +55,7 @@ type SnapshotInfo struct {
 type SnapshotShardInfo struct {
 	Total      int `json:"total"`
 	Failed     int `json:"failed"`
-	successful int `json:"successful"`
+	Successful int `json:"successful"`
 }
 
 type Options struct {
