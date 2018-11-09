@@ -76,6 +76,24 @@ type Options struct {
 	SecretKey string
 
 	Restore bool
+
+	Date       snapshotDate
+	DateFormat string
+}
+
+type snapshotDate time.Time
+
+func (d *snapshotDate) String() string {
+	return time.Time(*d).Format(options.DateFormat)
+}
+
+func (d *snapshotDate) Set(s string) error {
+	t, err := time.Parse(options.DateFormat, s)
+	if err != nil {
+		return err
+	}
+	*d = snapshotDate(t)
+	return nil
 }
 
 func (o *Options) Validate() error {
@@ -163,6 +181,8 @@ func main() {
 	flag.StringVar(&options.Region, "region", "", "s3 region")
 	flag.StringVar(&options.AccessKey, "access-key", "", "s3 access key")
 	flag.StringVar(&options.SecretKey, "secret-key", "", "s3 secret key")
+	flag.Var(&options.Date, "date", "date taken snapshot")
+	flag.StringVar(&options.DateFormat, "date-format", "20060102", "date format")
 
 	flag.Parse()
 	if err := options.Validate(); err != nil {
