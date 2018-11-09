@@ -76,6 +76,24 @@ type Options struct {
 	SecretKey string
 
 	Restore bool
+
+	Date       snapshotDate
+	DateFormat string
+}
+
+type snapshotDate time.Time
+
+func (d *snapshotDate) String() string {
+	return time.Time(*d).Format(options.DateFormat)
+}
+
+func (d *snapshotDate) Set(s string) error {
+	t, err := time.Parse(options.DateFormat, s)
+	if err != nil {
+		return err
+	}
+	*d = snapshotDate(t)
+	return nil
 }
 
 func (o *Options) Validate() error {
@@ -122,11 +140,11 @@ func (o *Options) Validate() error {
 }
 
 func (o *Options) RepositoryName() string {
-	return time.Now().Format(o.RepositoryFormat)
+	return time.Time(o.Date).Format(o.RepositoryFormat)
 }
 
 func (o *Options) SnapshotName() string {
-	return time.Now().Format(o.SnapshotFormat)
+	return time.Time(o.Date).Format(o.SnapshotFormat)
 }
 
 func (o *Options) RetryInterval() time.Duration {
@@ -147,7 +165,9 @@ func (o *Options) SnapshotRepository() SnapshotRepository {
 }
 
 var (
-	options Options
+	options = Options{
+		Date: snapshotDate(time.Now()),
+	}
 )
 
 func main() {
@@ -163,8 +183,11 @@ func main() {
 	flag.StringVar(&options.Region, "region", "", "s3 region")
 	flag.StringVar(&options.AccessKey, "access-key", "", "s3 access key")
 	flag.StringVar(&options.SecretKey, "secret-key", "", "s3 secret key")
+	flag.Var(&options.Date, "date", "date taken snapshot")
+	flag.StringVar(&options.DateFormat, "date-format", "20060102", "date format")
 
 	flag.Parse()
+
 	if err := options.Validate(); err != nil {
 		log.Fatalf("failed to parse flag: %v", err)
 	}
