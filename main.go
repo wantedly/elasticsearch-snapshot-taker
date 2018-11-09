@@ -88,6 +88,10 @@ func (d *snapshotDate) String() string {
 }
 
 func (d *snapshotDate) Set(s string) error {
+	if s == "" {
+		*d = snapshotDate(time.Now())
+		return nil
+	}
 	t, err := time.Parse(options.DateFormat, s)
 	if err != nil {
 		return err
@@ -140,11 +144,11 @@ func (o *Options) Validate() error {
 }
 
 func (o *Options) RepositoryName() string {
-	return time.Now().Format(o.RepositoryFormat)
+	return time.Time(o.Date).Format(o.RepositoryFormat)
 }
 
 func (o *Options) SnapshotName() string {
-	return time.Now().Format(o.SnapshotFormat)
+	return time.Time(o.Date).Format(o.SnapshotFormat)
 }
 
 func (o *Options) RetryInterval() time.Duration {
