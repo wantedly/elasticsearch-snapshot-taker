@@ -88,10 +88,6 @@ func (d *snapshotDate) String() string {
 }
 
 func (d *snapshotDate) Set(s string) error {
-	if s == "" {
-		*d = snapshotDate(time.Now())
-		return nil
-	}
 	t, err := time.Parse(options.DateFormat, s)
 	if err != nil {
 		return err
@@ -169,7 +165,9 @@ func (o *Options) SnapshotRepository() SnapshotRepository {
 }
 
 var (
-	options Options
+	options = Options{
+		Date: snapshotDate(time.Now()),
+	}
 )
 
 func main() {
@@ -189,6 +187,7 @@ func main() {
 	flag.StringVar(&options.DateFormat, "date-format", "20060102", "date format")
 
 	flag.Parse()
+
 	if err := options.Validate(); err != nil {
 		log.Fatalf("failed to parse flag: %v", err)
 	}
