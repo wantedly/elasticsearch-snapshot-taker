@@ -1,4 +1,4 @@
-i[![Docker Repository on Quay](https://quay.io/repository/wantedly/elasticsearch-snapshot-taker/status "Docker Repository on Quay")](https://quay.io/repository/wantedly/elasticsearch-snapshot-taker)
+[![Docker Repository on Quay](https://quay.io/repository/wantedly/elasticsearch-snapshot-taker/status "Docker Repository on Quay")](https://quay.io/repository/wantedly/elasticsearch-snapshot-taker)
 
 # elasticsearch-snapshot-taker
 Backup and Restore Elasticsearch cluster with AWS S3
