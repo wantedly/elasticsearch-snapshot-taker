@@ -79,6 +79,9 @@ type Options struct {
 
 	Date       snapshotDate
 	DateFormat string
+
+	IgnoreUnavailable  bool
+	IncludeGlobalState bool
 }
 
 type snapshotDate time.Time
@@ -185,6 +188,8 @@ func main() {
 	flag.StringVar(&options.SecretKey, "secret-key", "", "s3 secret key")
 	flag.Var(&options.Date, "date", "date taken snapshot")
 	flag.StringVar(&options.DateFormat, "date-format", "20060102", "date format")
+	flag.BoolVar(&options.IgnoreUnavailable, "ignore-unavailable", true, "enable ignore_unavailable option")
+	flag.BoolVar(&options.IncludeGlobalState, "include-global-state", true, "enable include_global_state option")
 
 	flag.Parse()
 
@@ -229,7 +234,11 @@ func createSnapshot() error {
 	_, _, errs := gorequest.New().
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Put(requestURL).
-		Send(&SnapshotSettings{Indices: "*"}).
+		Send(&SnapshotSettings{
+			Indices:            "*",
+			IgnoreUnavailable:  options.IgnoreUnavailable,
+			IncludeGlobalState: options.IncludeGlobalState,
+		}).
 		End()
 	if len(errs) > 0 {
 		buf := ""
@@ -291,7 +300,11 @@ func restoreSnapshot() error {
 	_, _, errs = gorequest.New().
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Post(requestURL).
-		Send(&SnapshotSettings{Indices: "*"}).
+		Send(&SnapshotSettings{
+			Indices:            "*",
+			IgnoreUnavailable:  options.IgnoreUnavailable,
+			IncludeGlobalState: options.IncludeGlobalState,
+		}).
 		End()
 	if len(errs) > 0 {
 		buf := ""
