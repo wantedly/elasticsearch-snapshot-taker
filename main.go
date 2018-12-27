@@ -237,7 +237,7 @@ func createSnapshot() error {
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Put(requestURL).
 		Send(&SnapshotSettings{
-      Indices: options.Indices,
+			Indices:            options.Indices,
 			IgnoreUnavailable:  options.IgnoreUnavailable,
 			IncludeGlobalState: options.IncludeGlobalState,
 		}).
