@@ -62,6 +62,7 @@ type Options struct {
 	ServiceName string
 	Env         string
 	URL         string
+	Indices     string
 
 	RepositoryFormat string
 	SnapshotFormat   string
@@ -175,6 +176,7 @@ func main() {
 	flag.StringVar(&options.ServiceName, "service-name", "", "service name")
 	flag.StringVar(&options.Env, "env", "", "env")
 	flag.StringVar(&options.URL, "url", "http://localhost:9200", "URL for Elasticsearch")
+	flag.StringVar(&options.Indices, "indices", "-.*", "target indices")
 	flag.StringVar(&options.RepositoryFormat, "repository-format", "200601", "format of repository name")
 	flag.StringVar(&options.SnapshotFormat, "snapshot-format", "02", "format of snapshot name")
 	flag.StringVar(&options.RetryIntervalStr, "retry-interval", "1m", "retry interval for API request")
@@ -229,7 +231,7 @@ func createSnapshot() error {
 	_, _, errs := gorequest.New().
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Put(requestURL).
-		Send(&SnapshotSettings{Indices: "*"}).
+		Send(&SnapshotSettings{Indices: options.Indices}).
 		End()
 	if len(errs) > 0 {
 		buf := ""
@@ -291,7 +293,7 @@ func restoreSnapshot() error {
 	_, _, errs = gorequest.New().
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Post(requestURL).
-		Send(&SnapshotSettings{Indices: "*"}).
+		Send(&SnapshotSettings{Indices: options.Indices}).
 		End()
 	if len(errs) > 0 {
 		buf := ""
