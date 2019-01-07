@@ -302,7 +302,8 @@ func restoreSnapshot() error {
 	_, _, errs = gorequest.New().
 		Retry(options.MaxRetries, options.RetryInterval(), http.StatusGatewayTimeout).
 		Post(requestURL).
-		Send(&SnapshotSettings{Indices: options.Indices,
+		Send(&SnapshotSettings{
+			Indices:            options.Indices,
 			IgnoreUnavailable:  options.IgnoreUnavailable,
 			IncludeGlobalState: options.IncludeGlobalState,
 		}).
