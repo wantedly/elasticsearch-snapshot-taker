@@ -14,7 +14,7 @@ ADD . ./
 RUN CGO_ENABLED=0 go build -ldflags="-s -w -extldflags '-static'" -o /snapshot
 
 
-FROM alpine:3.12
+FROM alpine:3.13
 COPY --from=0 /etc/ssl /etc/ssl
 COPY --from=0 /snapshot /snapshot
 ENTRYPOINT ["/snapshot"]
